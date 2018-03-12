@@ -5,7 +5,6 @@ namespace LaravelSlackEvents\Tests;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
-use LaravelSlackEvents\Tests\HandleReactionAdded;
 
 class SlackEventsControllerTest extends TestCase
 {
