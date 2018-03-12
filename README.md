@@ -4,12 +4,18 @@
 
 Laravel package for integrating with the [Slack Events API](https://api.slack.com/events-api).
 
+## Introduction
+
+This package makes it easy to set up a webhook in a Laravel application for receiving requests from Slack through the [Slack Events API](https://api.slack.com/events-api). The package handles token authentication and URL verification and leaves the specific handling of events up to you. Events can be handled through Laravel job classes or event listeners.
+
+Before proceeding, it's recommended that you familiarize yourself with the [Slack Events API](https://api.slack.com/events-api) and the available [Event Types](https://api.slack.com/events/api) so you can properly set up Slack to communicate with your application.
+
 ## Requirements
 
 - PHP 7.1 or above
 - Laravel 5.6
 
-These requirements are artificially high. The package could work with earlier versions of Laravel but has only been tested with Laravel 5.6.
+**NOTE:** These requirements are artificially high. The package could work with earlier versions of Laravel but has only been tested with Laravel 5.6.
 
 ## Installation
 
@@ -25,11 +31,13 @@ Publish the configuration file using:
 php artisan vendor:publish --provider="LaravelSlackEvents\SlackEventsServiceProvider" --tag="config"
 ```
 
-You will now have a `slack-events.php` file in your `config` directory. The package requires a `SLACK_EVENTS_TOKEN` environmental variable to be set. The *Verification Token* can be found on your Slack application dashboard ([https://api.slack.com/apps/<app_id>](https://api.slack.com/apps/<app_id>)), under the *App Credentials* section.
-
 ## Usage
 
-For the purpose of this document, assume we want our webhook URL to be `https://your.app/slack/events`.
+### Setup
+
+For the purpose of this guide, the webhook URL that we want is `https://app.tld/slack/events`.
+
+You will now have a `slack-events.php` file in your `config` directory. The package requires a `SLACK_EVENTS_TOKEN` environmental variable to be set. The *Verification Token* can be found on your Slack application dashboard ([https://api.slack.com/apps/<app_id>](https://api.slack.com/apps/<app_id>)), under the *App Credentials* section.
 
 First, create the webhook route using the route macro:
 
@@ -45,6 +53,8 @@ protected $except = [
 ];
 ```
 
+### Jobs
+
 In `config/slack-events.php`, configure any jobs to execute when associated events are triggered:
 
 ```php
@@ -54,12 +64,14 @@ In `config/slack-events.php`, configure any jobs to execute when associated even
 ],
 ```
 
+### Events
+
 ## Testing
 
 Run the included tests using:
 
 ```
-$ vendor bin phpunit
+$ vendor/bin/phpunit
 ```
 
 ## Credits
