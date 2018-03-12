@@ -4,8 +4,8 @@ namespace LaravelSlackEvents;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use LaravelSlackEvents\Exceptions\WebhookFailed;
 use LaravelSlackEvents\Middlewares\VerifyToken;
+use LaravelSlackEvents\Exceptions\WebhookFailed;
 
 class SlackEventsController extends Controller
 {
