@@ -2,7 +2,7 @@
 
 namespace LaravelSlackEvents\Tests;
 
-class HandleReactionAdded
+class DummyJob
 {
     public $payload;
 

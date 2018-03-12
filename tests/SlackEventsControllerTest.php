@@ -85,7 +85,7 @@ class SlackEventsControllerTest extends TestCase
 
     public function test_it_dispatches_the_job()
     {
-        config(['slack-events.jobs' => ['reaction_added' => HandleReactionAdded::class]]);
+        config(['slack-events.jobs' => ['reaction_added' => DummyJob::class]]);
 
         $this->post('slack/events', [
             'event' => ['type' => 'reaction_added'],
@@ -93,7 +93,7 @@ class SlackEventsControllerTest extends TestCase
             'type' => 'event_callback',
         ])->assertSuccessful();
 
-        Bus::assertDispatched(HandleReactionAdded::class, function ($job) {
+        Bus::assertDispatched(DummyJob::class, function ($job) {
             return $job->payload['event']['type'] === 'reaction_added';
         });
     }
